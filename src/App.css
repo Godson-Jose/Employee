@@ -1,0 +1,84 @@
+/* You can add any custom, component-specific styles here if needed. */
+/* For now, it can remain empty as we are using Tailwind classes directly. */
+@import "tailwindcss";
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Improve touch behavior on mobile (buttons/interactive items) */
+button,
+[role="button"],
+.modal-content {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* Prevent background scroll when modal or mobile menu is open */
+body.no-scroll {
+  /* only lock scrolling; setting height:100% can cause layout/jump issues on desktop Chrome */
+  overflow: hidden;
+}
+
+/* Make modal content full-screen on small devices for better touch UX */
+@media (max-width: 640px) {
+  .modal-content {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    box-shadow: none;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    overflow-y: auto;
+  }
+}
+
+/* Basic fallback vendor-prefixed backdrop-filter utilities in case Tailwind isn't available */
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.backdrop-blur-lg {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
