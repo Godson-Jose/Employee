@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import localEmployees from './data/employees.json';
 
 // --- Icon Components (as SVGs for better customization) ---
 const UserIcon = () => (
@@ -249,11 +250,17 @@ export default function App() {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        // Prefer local JSON bundled with the app for consistent employee data
+        let data = Array.isArray(localEmployees) && localEmployees.length ? localEmployees : null;
+
+        // Fallback to remote API if local data is unavailable
+        if (!data) {
+          const response = await fetch('https://jsonplaceholder.typicode.com/users');
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          data = await response.json();
         }
-        let data = await response.json();
 
         const designations = ['Software Engineer', 'Product Manager', 'UX/UI Designer', 'Data Scientist', 'Marketing Head', 'Lead Developer', 'QA Tester', 'DevOps Engineer', 'HR Manager', 'Project Lead'];
         const locations = ['New York, NY', 'London, UK', 'Tokyo, JP', 'Sydney, AU', 'Berlin, DE', 'Paris, FR', 'Toronto, CA', 'San Francisco, CA', 'Singapore', 'Mumbai, IN'];
